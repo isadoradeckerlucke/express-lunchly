@@ -50,6 +50,8 @@ router.post("/add/", async function(req, res, next) {
 
 router.get("/:id/", async function(req, res, next) {
   try {
+    // .get is static class method, returns class instance 
+    // look up corresponding customer in the database, return a js instance of the correct class
     const customer = await Customer.get(req.params.id);
 
     const reservations = await customer.getReservations();

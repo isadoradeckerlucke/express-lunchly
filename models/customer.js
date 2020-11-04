@@ -14,8 +14,9 @@ class Customer {
     this.notes = notes;
   }
 
+  // static method or property for class- can not be called on instances of the class. they're called on the class itself.
+  // static methods often create or clone objects, static properties are useful for caches, fixed-config or any other data that doesn't need to be replicated across instances.
   /** find all customers. */
-
   static async all() {
     const results = await db.query(
       `SELECT id, 
@@ -30,6 +31,16 @@ class Customer {
   }
 
   /** get a customer by ID. */
+  // method meant to be called on the class. 
+  // look up corresponding customer in the database, return a js instance of the correct class.
+  // ie await Customer.get(id) returns: 
+  // Customer {
+  // id: 79,
+  // firstName: 'Kelli',
+  // lastName: 'Nguyen',
+  // phone: null,
+  // notes: 'Sister else adult sea.'
+  // }
 
   static async get(id) {
     const results = await db.query(
